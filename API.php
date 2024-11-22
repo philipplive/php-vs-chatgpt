@@ -19,18 +19,18 @@ class API {
 	public string $apiKey = '';
 
 	/**
-	 * Defaultmodel
+	 * Standardmodell
 	 * @var string
 	 */
 	private string $model = 'gpt-4o'; // gpt-4o-mini, gpt-4o, gpt-3.5-turbo, gpt-4o and gpt-4-turbo, eigenes...
 
 	/**
-	 * Standardmodel für hohe Performance
+	 * Standardmodell für hohe Performance
 	 */
 	const MODEL_PERFORMANCE = 'gpt-4o-mini';
 
 	/**
-	 * Standardmodel für hohe Antwortqualität
+	 * Standardmodell für hohe Antwortqualität
 	 */
 	const MODEL_QUALITY = 'gpt-4o';
 
@@ -42,7 +42,7 @@ class API {
 	}
 
 	/**
-	 * Standardmodel in diesem Kontext setzen
+	 * Standardmodell in diesem Kontext setzen
 	 * @param string $model
 	 * @return self
 	 */
