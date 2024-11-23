@@ -4,7 +4,6 @@ namespace ChatGPT;
 
 use ChatGPT\Objects\Assistant;
 use ChatGPT\Objects\Model;
-use ChatGPT\Objects\Run;
 use ChatGPT\Objects\Thread;
 
 /**
@@ -51,7 +50,15 @@ class API {
 		return $this;
 	}
 
+	/**
+	 * Api-Request
+	 * @param array $param
+	 * @param string|array $endpoint
+	 * @param string $method
+	 * @return array
+	 */
 	public function curlRequest(array $param, string|array $endpoint = 'chat/completions', string $method = 'POST'): array {
+		print_r($param);
 		if (is_array($endpoint))
 			$endpoint = implode('/', $endpoint);
 
@@ -143,7 +150,7 @@ class API {
 		while (!$run->isComplete())
 			sleep(1);
 
-		return $thread->getLastMessage()->msg;
+		return $thread->getLastMessage()->message;
 	}
 
 	/**

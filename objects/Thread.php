@@ -14,7 +14,7 @@ class Thread extends \ChatGPT\ApiObject {
 	}
 
 	public function addMessage(ThreadMessage $message): self {
-		$this->api->curlRequest(['role' => $message->role == \ChatGPT\Role::USER ? 'user' : 'assistant', 'content' => $message->msg], ['threads', $this->id, 'messages']);
+		$this->api->curlRequest(['role' => $message->getRole() == \ChatGPT\Role::USER ? 'user' : 'assistant', 'content' => $message->message], ['threads', $this->id, 'messages']);
 		return $this;
 	}
 
@@ -46,8 +46,8 @@ class Thread extends \ChatGPT\ApiObject {
 
 			foreach ($responseMsg['content'] as $content) {
 				if ($content['type'] == 'text') {
-					$text = explode('【', $content['text']['value'])[0]; // Quellenangaben abschneiden
-					$msg->addContent($text);
+					$text = explode('【', $content['text']['value'])[0]; // Quellenangaben entfernen
+					$msg->addMessage($text);
 				}
 				else
 					throw new \Exception(sprintf('Unbekannter Type %s', $content['type']));

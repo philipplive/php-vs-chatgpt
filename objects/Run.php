@@ -15,12 +15,19 @@ class Run extends \ChatGPT\ApiObject {
 		return $data['status'] == 'completed';
 	}
 
-	public function wait(int $timeout = 60): self {
+	/**
+	 * Warte bis der Auftrag abgeschlossen ist
+	 * @param int $timeout in Sekunden
+	 * @return $this
+	 * @throws \Exception
+	 */
+	public function wait(int $timeout = 20): self {
 		while (!$this->isComplete()) {
-			if ($timeout-- == 1)
+			if ($timeout < 0)
 				throw new \Exception("Timeout");
 
-			sleep(1);
+			$timeout -= 3;
+			sleep(3);
 		}
 
 		return $this;

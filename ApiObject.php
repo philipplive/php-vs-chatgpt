@@ -11,7 +11,7 @@ class ApiObject {
 	public string $id;
 
 	/**
-	 * @var array Indices die zum speichern verwendet werden
+	 * @var array Indices die zum speichern und auslesen verwendet werden
 	 */
 	public array $indices = [];
 
