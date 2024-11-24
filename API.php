@@ -116,7 +116,7 @@ class API {
 	}
 
 	/**
-	 * Objektliste abfragen
+	 * Objekt abfragen
 	 * @param string|array $endpoint
 	 * @param ApiObject $prototype
 	 * @return ApiObject

@@ -1,6 +1,8 @@
 # ChatGPT Api in PHP
 
-Simple ChatGPT Api für PHP.
+Eine minimalistische und leichtgewichtige API für die Integration von ChatGPT in PHP-Projekten.
+
+Diese API wurde speziell entwickelt, um den Einstieg so einfach wie möglich zu gestalten, ohne dabei viel Speicherplatz oder komplizierte Abhängigkeiten zu benötigen. Sie ist ideal für Entwickler, die eine unkomplizierte Möglichkeit suchen, ChatGPT-Funktionen in ihre PHP-Anwendungen zu integrieren.
 
 ## Beispiele
 Einfacher Textrequest:
