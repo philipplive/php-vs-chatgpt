@@ -57,8 +57,7 @@ class API {
 	 * @param string $method
 	 * @return array
 	 */
-	public function curlRequest(array $param, string|array $endpoint = 'chat/completions', string $method = 'POST'): array {
-		print_r($param);
+	public function curlRequest(array $param = [], string|array $endpoint = 'chat/completions', string $method = 'POST'): array {
 		if (is_array($endpoint))
 			$endpoint = implode('/', $endpoint);
 
@@ -77,7 +76,7 @@ class API {
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-		if ($method === 'POST' || $method === 'PUT')
+		if ($param && ($method === 'POST' || $method === 'PUT'))
 			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($param));
 
 		$response = curl_exec($ch);
@@ -213,5 +212,25 @@ class API {
 	 */
 	public function getModels(): array {
 		return $this->requestObjects('models', new Model());
+	}
+
+	/**
+	 * @param string $prompt
+	 * @param bool $highQuality
+	 * @param bool $naturalStyle
+	 * @return \ChatGPT\Objects\Image
+	 */
+	public function createImage(string $prompt, bool $highQuality = false, bool $naturalStyle = true): \ChatGPT\Objects\Image {
+		$response = $this->curlRequest([
+			'model' => 'dall-e-3',
+			'prompt' => $prompt,
+			'size' => '1024x1024',
+			'n' => 1,
+			'quality' => $highQuality ? 'hd' : 'standard',
+			'style' => $naturalStyle ? 'natural' : 'vivid'
+		], ['images', 'generations']);
+
+		$img = new \ChatGPT\Objects\Image();
+		return $img->fetchInApiData($response['data'][0]);
 	}
 }

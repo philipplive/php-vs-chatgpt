@@ -20,7 +20,7 @@ class ApiObject {
 		$this->id = $id;
 	}
 
-	public function fetchInApiData(array $data, array|null $indices = null): void {
+	public function fetchInApiData(array $data, array|null $indices = null): self {
 		$indices = $indices ?? $this->indices;
 
 		foreach ($indices as $object => $api) {
@@ -40,6 +40,8 @@ class ApiObject {
 
 			$this->$object = $value;
 		}
+
+		return $this;
 	}
 
 	public function fetchOutApiData(array|null $indices = null): array{
