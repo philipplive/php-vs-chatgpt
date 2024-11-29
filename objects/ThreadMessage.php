@@ -2,7 +2,7 @@
 
 namespace ChatGPT\Objects;
 
-class ThreadMessage{
+class ThreadMessage {
 	public string $message;
 
 	/**
@@ -15,23 +15,21 @@ class ThreadMessage{
 		$this->setRole($role);
 	}
 
-	public function setRole(int $role):self{
+	public function setRole(int $role): self {
 		$this->role = $role;
 		return $this;
 	}
 
-	public function getRole():int{
-	    return $this->role;
+	public function getRole(): int {
+		return $this->role;
 	}
 
 	public function setRoleFromString(string $role): void {
-		if ($role == 'user')
-			$this->role = \ChatGPT\Role::USER;
-		else
-			$this->role = \ChatGPT\Role::ASSISTANT;
+		$this->role = $role == 'user' ? \ChatGPT\Role::USER : \ChatGPT\Role::ASSISTANT;
 	}
 
-	public function addMessage(string $message): void {
+	public function addMessage(string $message): self {
 		$this->message .= $message;
+		return $this;
 	}
 }

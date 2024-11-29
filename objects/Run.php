@@ -11,8 +11,7 @@ class Run extends \ChatGPT\ApiObject {
 	}
 
 	public function isComplete(): bool {
-		$data = $this->api->curlRequest([], ['threads', $this->thread->id, 'runs', $this->id], 'GET');
-		return $data['status'] == 'completed';
+		return $this->api->curlRequest([], ['threads', $this->thread->id, 'runs', $this->id], 'GET')['status'] == 'completed';
 	}
 
 	/**
