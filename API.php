@@ -233,4 +233,13 @@ class API {
 		$img = new \ChatGPT\Objects\Image();
 		return $img->fetchInApiData($response['data'][0]);
 	}
+
+	public function createEmbedding(string $input): \ChatGPT\Objects\Embedding {
+		$embedding = new \ChatGPT\Objects\Embedding();
+
+		$data = $this->curlRequest(['encoding_format' => 'float', 'input' => $input, 'model' => $embedding->model], ['embeddings']);
+		$embedding->vectors = $data['data'][0]['embedding'];
+
+		return $embedding;
+	}
 }
