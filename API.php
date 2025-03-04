@@ -5,6 +5,8 @@ namespace ChatGPT;
 use ChatGPT\Objects\Assistant;
 use ChatGPT\Objects\Model;
 use ChatGPT\Objects\Thread;
+use ChatGPT\Objects\VectorStore;
+use ChatGPT\Objects\File;
 
 /**
  * @link https://platform.openai.com/
@@ -212,6 +214,20 @@ class API {
 	 */
 	public function getModels(): array {
 		return $this->requestObjects('models', new Model());
+	}
+
+	/**
+	 * @return VectorStore[]
+	 */
+	public function getVectorStores(): array {
+		return $this->requestObjects('vector_stores', new VectorStore());
+	}
+
+	/**
+	 * @return File[]
+	 */
+	public function getFiles(): array {
+		return $this->requestObjects(['files'], new File());
 	}
 
 	/**

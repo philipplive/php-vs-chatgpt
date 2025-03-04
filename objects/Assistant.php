@@ -42,6 +42,11 @@ class Assistant extends \ChatGPT\ApiObject {
 	 */
 	public string $model = '';
 
+	/**
+	 * @var string[]
+	 */
+	public array $vectorStoreIds = [];
+
 	public array $indices = ['name', 'instructions', 'topp' => 'top_p', 'temperature', 'model', 'description'];
 
 	public function save(): void {
